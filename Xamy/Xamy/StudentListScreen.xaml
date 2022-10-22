@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Xamy.StudentListScreen"
+             Title="Students List"
+             >
+    <StackLayout>
+        <ListView x:Name="myStudentList" SeparatorColor="gray">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ImageCell
+                        Text="{Binding Name}"
+                        Detail="{Binding Course}"
+                        ImageSource="https://thumbs.dreamstime.com/b/businessman-icon-image-male-avatar-profile-vector-glasses-beard-hairstyle-179728610.jpg"
+                        />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="Add a new Student" Clicked="Button_Clicked" BackgroundColor="#3ABBF2" Margin="4"></Button>
+    </StackLayout>
+</ContentPage>
