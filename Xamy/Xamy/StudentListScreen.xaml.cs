@@ -13,9 +13,11 @@ namespace Xamy
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class StudentListScreen : ContentPage
     {
+        public Student SelectedStudent { get; set; }
         public StudentListScreen()
         {
             InitializeComponent();
+            DisplayAlert("Hints", "press each item to choose between deleting and editing", "Ok");
             myStudentList.ItemsSource = Student.StudentList;
         }
 
@@ -24,5 +26,32 @@ namespace Xamy
             await Navigation.PushAsync(new StudentFormPage());
         }
 
+        public void Delete_Student(object sender, EventArgs e)
+        {
+            DisplayAlert("yeah", "yeah", "yae");
+            
+            
+        }
+
+        private void Delete_Clicked(object sender, EventArgs e)
+        {
+            var menuItem = sender as MenuItem;
+            var student = menuItem.CommandParameter as Student;
+            Student.StudentList.Remove(student);
+        }
+
+        private async void Edit_Clicked(object sender, EventArgs e)
+        {
+            var menuItem = sender as MenuItem;
+            var student = menuItem.CommandParameter as Student;
+            await Navigation.PushAsync(new EditStudentScreen(student));
+        }
+
+        public void StudentList_Referesh(object sender, EventArgs e)
+        {
+            myStudentList.ItemsSource = null;
+            myStudentList.ItemsSource = Student.StudentList;
+            myStudentList.EndRefresh();
+        }
     }
 }

@@ -5,10 +5,14 @@
              Title="Students List"
              >
     <StackLayout>
-        <ListView x:Name="myStudentList" SeparatorColor="gray">
+        <ListView x:Name="myStudentList" SeparatorColor="gray" SelectedItem="{Binding SelectedStudent}" IsPullToRefreshEnabled="True" Refreshing="StudentList_Referesh">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Delete" Clicked="Delete_Clicked" CommandParameter="{Binding .}"/>
+                            <MenuItem Text="Edit" Clicked="Edit_Clicked" CommandParameter="{Binding .}"/>
+                        </ViewCell.ContextActions>
                         <StackLayout Orientation="Horizontal">
                             <Image
                             Source="male.jpg"
@@ -26,9 +30,10 @@
                                 Text="{Binding Course}"
                                 />
                             </StackLayout>
-                            <StackLayout Orientation="Horizontal">
+                            <!--<StackLayout Orientation="Horizontal">
                                 <ImageButton
                                     Source="delete.png"
+                                    Clicked="Delete_Student"
                                     WidthRequest="30"
                                     HeightRequest="30"
                                     BackgroundColor="Transparent"
@@ -39,7 +44,7 @@
                                     HeightRequest="30"
                                     BackgroundColor="Transparent"
                                 />
-                            </StackLayout>
+                            </StackLayout>-->
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
