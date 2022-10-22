@@ -8,11 +8,40 @@
         <ListView x:Name="myStudentList" SeparatorColor="gray">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ImageCell
-                        Text="{Binding Name}"
-                        Detail="{Binding Course}"
-                        ImageSource="https://thumbs.dreamstime.com/b/businessman-icon-image-male-avatar-profile-vector-glasses-beard-hairstyle-179728610.jpg"
-                        />
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Image
+                            Source="male.jpg"
+                            HeightRequest="40"
+                            WidthRequest="40"
+                            />
+                            <StackLayout HorizontalOptions="StartAndExpand" Spacing="0">
+                                <Label
+                                Text="{Binding Name}"
+                                FontSize="Medium"
+                                TextColor="Black"
+                                FontAttributes="Bold"
+                                />
+                                <Label
+                                Text="{Binding Course}"
+                                />
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <ImageButton
+                                    Source="delete.png"
+                                    WidthRequest="30"
+                                    HeightRequest="30"
+                                    BackgroundColor="Transparent"
+                                />
+                                <ImageButton
+                                    Source="edit.jpg"
+                                    WidthRequest="30"
+                                    HeightRequest="30"
+                                    BackgroundColor="Transparent"
+                                />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
