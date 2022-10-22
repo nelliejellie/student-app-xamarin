@@ -24,9 +24,12 @@ namespace Xamy
 
         public async void Button_Clicked(object sender, EventArgs e)
         {
-            var student = Student.StudentList.Where(x => x.Name == _Student.Name).SingleOrDefault();
+            var students = await App.Database.GetAllStudents();
+            var student = students.Where(x => x.Id == _Student.Id).FirstOrDefault();
             student.Name = name.Text;
             student.Course = Course.Text;
+
+            await App.Database.UpdateStudent(student);
             
             await Navigation.PopAsync();
         }

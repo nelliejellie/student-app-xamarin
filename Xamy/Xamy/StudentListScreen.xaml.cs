@@ -21,6 +21,16 @@ namespace Xamy
             myStudentList.ItemsSource = Student.StudentList;
         }
 
+        protected override async void OnAppearing()
+        {
+            try
+            {
+                base.OnAppearing();
+                myStudentList.ItemsSource = await App.Database.GetAllStudents();
+            }
+            catch { }
+        }
+
         async void Button_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new StudentFormPage());
@@ -33,11 +43,11 @@ namespace Xamy
             
         }
 
-        private void Delete_Clicked(object sender, EventArgs e)
+        private async void Delete_Clicked(object sender, EventArgs e)
         {
             var menuItem = sender as MenuItem;
             var student = menuItem.CommandParameter as Student;
-            Student.StudentList.Remove(student);
+            await App.Database.DeleteStudent(student);
         }
 
         private async void Edit_Clicked(object sender, EventArgs e)
@@ -47,10 +57,10 @@ namespace Xamy
             await Navigation.PushAsync(new EditStudentScreen(student));
         }
 
-        public void StudentList_Referesh(object sender, EventArgs e)
+        public async void StudentList_Referesh(object sender, EventArgs e)
         {
             myStudentList.ItemsSource = null;
-            myStudentList.ItemsSource = Student.StudentList;
+            myStudentList.ItemsSource = await App.Database.GetAllStudents();
             myStudentList.EndRefresh();
         }
     }

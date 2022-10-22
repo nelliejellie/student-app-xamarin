@@ -7,6 +7,6 @@
                ReturnType="Next" ClearButtonVisibility="WhileEditing"/>
         <Entry x:Name="Course" Keyboard="Text" Placeholder="enter student course"
                ReturnType="Next" ClearButtonVisibility="WhileEditing"/>
-        <Button Text="Edit" Clicked="Button_Clicked"/>
+        <Button Text="Edit" Clicked="Button_Clicked" BackgroundColor="LawnGreen"/>
     </StackLayout>
 </ContentPage>

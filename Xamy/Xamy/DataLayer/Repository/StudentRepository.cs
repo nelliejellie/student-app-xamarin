@@ -7,7 +7,7 @@ namespace Xamy.DataLayer.Repository
 {
     public static class StudentRepository
     {
-        
+        // in house static repository
 
         public static List<Student> Students()
         {

@@ -21,14 +21,27 @@ namespace Xamy
 
         async void Button_Clicked(object sender, EventArgs e)
         {
-            Student student = new Student()
+            if(string.IsNullOrEmpty(name.Text) || string.IsNullOrEmpty(Course.Text))
+            {
+                await DisplayAlert("Wrong Input", "fix empty input values", "Cool");
+            }
+            else
+            {
+                AddNewStudent();
+            }
+
+            
+            await Navigation.PopAsync();
+        }
+
+        private async void AddNewStudent()
+        {
+            await App.Database.CreateStudent(new Student
             {
                 Name = name.Text,
                 Course = Course.Text,
                 ImageUrl = "https://thumbs.dreamstime.com/b/businessman-icon-image-male-avatar-profile-vector-glasses-beard-hairstyle-179728610.jpg"
-            };
-            Student.StudentList.Add(student);
-            await Navigation.PopAsync();
+            });
         }
     }
 }
