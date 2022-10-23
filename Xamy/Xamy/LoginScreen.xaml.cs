@@ -46,10 +46,10 @@ namespace Xamy
 
         private async void OnLoginComplete(GoogleUser googleUser, string message)
         {
-            if (IsLoggedIn)
-            {
-                await Navigation.PushAsync(new StudentListScreen());
-            }
+            //if (IsLoggedIn)
+            //{
+            //    await Navigation.PushAsync(new StudentListScreen());
+            //}
             
             if (googleUser != null)
             {
@@ -63,6 +63,7 @@ namespace Xamy
             else
             {
                 DisplayAlert("Message", message, "OK");
+                await Navigation.PushAsync(new LoginScreen());
             }
         }
 
