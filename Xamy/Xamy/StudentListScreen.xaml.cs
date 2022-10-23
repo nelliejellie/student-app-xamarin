@@ -16,12 +16,13 @@ namespace Xamy
         public Student SelectedStudent { get; set; }
 
         private readonly IGoogleManager _googleManager;
-        public StudentListScreen()
+        public StudentListScreen(GoogleUser user)
         {
             InitializeComponent();
             DisplayAlert("Hints", "press each item to choose between deleting and editing", "Ok");
             myStudentList.ItemsSource = Student.StudentList;
             _googleManager = DependencyService.Get<IGoogleManager>();
+            lblText.Text = $"Welcome {user.Name}";
         }
 
         protected override async void OnAppearing()

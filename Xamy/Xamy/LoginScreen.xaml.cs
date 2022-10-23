@@ -55,10 +55,8 @@ namespace Xamy
             {
                 GoogleUser = googleUser;
                 IsLoggedIn = true;
-                var nextScreen = new StudentListScreen();
-                nextScreen.BindingContext = googleUser;
                 
-                await Navigation.PushAsync(new StudentListScreen());
+                await Navigation.PushAsync(new StudentListScreen(googleUser));
             }
             else
             {
