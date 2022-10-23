@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xamy.DataLayer.Entities;
 
 namespace Xamy
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginScreen : ContentPage
     {
+        private readonly IGoogleManager _googleManager;
+
+        GoogleUser GoogleUser = new GoogleUser();
+        public bool IsLoggedIn { get; set; }
         public LoginScreen()
         {
             InitializeComponent();
@@ -22,12 +27,51 @@ namespace Xamy
                 CachingEnabled = true,
                 CacheValidity = new TimeSpan(3, 0, 0, 0),
             };
+            _googleManager = DependencyService.Get<IGoogleManager>();
+            //CheckUserLoggedIn();
+            
         }
 
-        async void Button_Clicked(object sender, EventArgs e)
+         void Button_Clicked(object sender, EventArgs e)
         {
-            // DisplayAlert("Google Login", "Login with google", "OK");
-            await Navigation.PushAsync(new StudentListScreen());
+            _googleManager.Login(OnLoginComplete);
+            
+                
         }
+
+        private void CheckUserLoggedIn()
+        {
+            _googleManager.Login(OnLoginComplete);
+        }
+
+        private async void OnLoginComplete(GoogleUser googleUser, string message)
+        {
+            if (IsLoggedIn)
+            {
+                await Navigation.PushAsync(new StudentListScreen());
+            }
+            
+            if (googleUser != null)
+            {
+                GoogleUser = googleUser;
+                IsLoggedIn = true;
+                var nextScreen = new StudentListScreen();
+                nextScreen.BindingContext = googleUser;
+                
+                await Navigation.PushAsync(new StudentListScreen());
+            }
+            else
+            {
+                DisplayAlert("Message", message, "OK");
+            }
+        }
+
+        public void GoogleLogOut()
+        {
+            _googleManager?.Logout();
+            IsLoggedIn = false;
+        }
+
+
     }
 }

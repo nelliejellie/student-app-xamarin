@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "427111601534",
+    "project_id": "xamy-92dc9",
+    "storage_bucket": "xamy-92dc9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:427111601534:android:9a5d2d451ed8dff33e0f2f",
+        "android_client_info": {
+          "package_name": "com.companyname.xamy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "427111601534-6jro7tte4odmjd0enhgipd74153icc4c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.companyname.xamy",
+            "certificate_hash": "089818f908eb6e4c0aa67bd62b6dc6b26def2c9d"
+          }
+        },
+        {
+          "client_id": "427111601534-9thns2953912qscv67kl6vp0i9h5btma.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDF7Fg5PhOME3cd9ZW0QxIoCn3tIa64SjU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "427111601534-9thns2953912qscv67kl6vp0i9h5btma.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

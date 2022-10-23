@@ -14,11 +14,14 @@ namespace Xamy
     public partial class StudentListScreen : ContentPage
     {
         public Student SelectedStudent { get; set; }
+
+        private readonly IGoogleManager _googleManager;
         public StudentListScreen()
         {
             InitializeComponent();
             DisplayAlert("Hints", "press each item to choose between deleting and editing", "Ok");
             myStudentList.ItemsSource = Student.StudentList;
+            _googleManager = DependencyService.Get<IGoogleManager>();
         }
 
         protected override async void OnAppearing()
@@ -36,12 +39,7 @@ namespace Xamy
             await Navigation.PushAsync(new StudentFormPage());
         }
 
-        public void Delete_Student(object sender, EventArgs e)
-        {
-            DisplayAlert("yeah", "yeah", "yae");
-            
-            
-        }
+       
 
         private async void Delete_Clicked(object sender, EventArgs e)
         {
@@ -62,6 +60,12 @@ namespace Xamy
             myStudentList.ItemsSource = null;
             myStudentList.ItemsSource = await App.Database.GetAllStudents();
             myStudentList.EndRefresh();
+        }
+
+        public async void Button_Logout(object sender, EventArgs e)
+        {
+            _googleManager.Logout();
+            await Navigation.PopAsync();
         }
     }
 }

@@ -2,8 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Xamy.StudentListScreen"
-             Title="Students List"
+             NavigationPage.HasBackButton="False"
+             Title="Students"
              >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="Logout"
+            Order="Primary"
+            Priority="1"
+            Clicked="Button_Logout"
+            />
+    </ContentPage.ToolbarItems>
     <StackLayout>
         <ListView x:Name="myStudentList" SeparatorColor="gray" SelectedItem="{Binding SelectedStudent}" IsPullToRefreshEnabled="True" Refreshing="StudentList_Referesh">
             <ListView.ItemTemplate>
@@ -30,26 +39,13 @@
                                 Text="{Binding Course}"
                                 />
                             </StackLayout>
-                            <!--<StackLayout Orientation="Horizontal">
-                                <ImageButton
-                                    Source="delete.png"
-                                    Clicked="Delete_Student"
-                                    WidthRequest="30"
-                                    HeightRequest="30"
-                                    BackgroundColor="Transparent"
-                                />
-                                <ImageButton
-                                    Source="edit.jpg"
-                                    WidthRequest="30"
-                                    HeightRequest="30"
-                                    BackgroundColor="Transparent"
-                                />
-                            </StackLayout>-->
+                            
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Label Text="Checking"/>
         <Button Text="Add a new Student" Clicked="Button_Clicked" BackgroundColor="#3ABBF2" Margin="4"></Button>
     </StackLayout>
 </ContentPage>

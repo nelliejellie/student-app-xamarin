@@ -29,7 +29,7 @@ namespace Xamy
 
             MainPage = new NavigationPage(new LoginScreen())
             {
-                BarBackgroundColor = Color.LightYellow,
+                BarBackgroundColor = Color.Chocolate,
                 BarTextColor = Color.Black,
             };
         }
